@@ -1,0 +1,27 @@
+_target_: src.models.time_module.TSModule
+save_dir: ${paths.output_dir}/datamodule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 50
+
+net:
+  _target_: src.models.components.bilstm_model.BiLstmModel
+  input_size: 0
+  output_size: 0
+  act_fn_name: relu
+  cell_array:
+    - 64
+    - 64
+    - 64
+    # - 64
+  dropout: 0

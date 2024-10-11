@@ -1,0 +1,26 @@
+_target_: src.models.time_module.TSModule
+save_dir: ${paths.output_dir}/datamodule
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 50
+
+net:
+  _target_: src.models.components.transformer_model.TransformerModel
+  input_size : 0
+  output_size: 0
+  dropout: 0
+  d_model: 64
+  nhead: 4
+  dim_feedforward: 64
+  mlp_dim: 64
+  nlayers: 4

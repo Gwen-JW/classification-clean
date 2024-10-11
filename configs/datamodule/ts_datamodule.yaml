@@ -1,0 +1,7 @@
+_target_: src.datamodules.time_datamodule.TimeDataModule
+
+data_dir: ${paths.data_dir}/Blink
+
+save_dir: ${paths.output_dir}/datamodule
+train_batch_size: 32
+val_batch_size: 1
