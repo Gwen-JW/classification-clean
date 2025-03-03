@@ -74,4 +74,12 @@ Train model with chosen experiment configuration from `configs/experiment/timese
 ```bash
 python src/train.py experiment=timeseries/Blink.yaml
 ```
-The trained results will be automatically saved to dir `logs/${task_name}/runs/${now:%Y-%m-%d}_${now:%H-%M-%S}`.
+The trained results will be automatically saved to the dir `logs/${task_name}/runs/${now:%Y-%m-%d}_${now:%H-%M-%S}`.
+
+### 3. Apply post-hoc interpretability methods to trained models and evaluate different methods
+Please indicate the path of the trained model in [configs/eval_interpret.yaml](configs/eval_interpret.yaml)
+> **Note**: You might need to set ``deterministic: False`` in [configs/trainer/default.yaml](configs/trainer/default.yaml) if you encounter the error ``RuntimeError: max_unpooling2d_forward_out does not have a deterministic implementation``.
+```bash
+python src/eval_interpret.py
+```
+Please make sure the configurations of the datamodule in [configs/datamodule/ts_datamodule.yaml](configs/datamodule/ts_datamodule.yaml) and model in [configs/model](configs/model) are the same as the configurations of the trained model. Results of post-hoc interpretability methods and the evaluation will be automaticaaly saved to the dir `logs/${task_name}/runs/${now:%Y-%m-%d}_${now:%H-%M-%S}`.
